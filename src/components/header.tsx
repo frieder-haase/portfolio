@@ -1,12 +1,16 @@
+"use client";
+import { useIntro } from "@/context/IntroContext";
+
 export default function Header() {
+  const { introDone } = useIntro();
   return (
-    <header>
-      <div className="container mx-auto relative flex min-h-24 items-center px-4">
-        <h1 className="absolute left-4">
+    <header className={`transition-opacity duration-1000 ${introDone ? "opacity-100" : "opacity-0"}`}>
+      <div className="container mx-auto flex relativesticky top-0 min-h-24 items-center">
+        <h1 className="text-center left-0">
           Frieder Haase
         </h1>
 
-        <nav className="absolute right-4 flex gap-4">
+        <nav className="flex gap-8 ml-auto">
           <a href="/">Portfolio</a>
           <a href="/ueber-mich">Über mich</a>
         </nav>

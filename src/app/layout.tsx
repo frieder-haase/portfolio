@@ -3,6 +3,7 @@ import { Space_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header"
 import Footer from "@/components/footer"
+import { IntroProvider } from "@/context/IntroContext"
 
 const spaceMono = Space_Mono({
   weight: ["400", "700"],
@@ -13,7 +14,7 @@ const spaceMono = Space_Mono({
 export const metadata: Metadata = {
   title: "Frieder Haase – Junior Developer",
   description: "Fachinformatiker in Anwendungsentwicklung. Motivierter Junior Developer mit Interesse an Web- und Game Development.",
-  keywords: "Junior Developer, Web Development, Game Development, Graphic Design, JavaScript, React, Portfolio",
+  keywords: "Junior Developer, Web Development, Game Development, Graphic Design, JavaScript, React, Portfolio, Full-Stack, Junior, Fachinformatiker, Anwendungsentwicklung",
   authors: [{ name: "Frieder Haase" }],
 };
 
@@ -25,9 +26,11 @@ export default function RootLayout({
   return (
     <html lang="de">
       <body className={spaceMono.variable}>
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <IntroProvider>
+          <Header />
+          <main className="min-h-screen">{children}</main>
+          <Footer />
+        </IntroProvider>
       </body>
     </html>
   );

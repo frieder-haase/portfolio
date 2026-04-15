@@ -2,50 +2,48 @@
 
 :root {
   --background: #0D0D0D;
-  --foreground: #737373;
+  --foreground: #1BF2A3;
 }
 
 @theme {
-    --color-primary: #1BA665;
-    --color-secondary: #22F291;
-    --color-tertiary: #1BF2A3;
-    --color-bggrey: #737373;
-    --color-bgblack: #0D0D0D;
+    --color-primary: #1BF2A3;
+    --color-gray: #737373;
+    --color-black: #0D0D0D;
 }
+
 
 h1 {
   font-family: var(--font-space-mono), monospace;
-  color: #1BF2A3;
-  font-size: 2.5rem;
+  color: var(--color-primary);
+  font-size: 3rem;
 }
 
 h2 {
   font-family: var(--font-space-mono), monospace;
-  color: #1BF2A3;
+  color: var(--color-primary);
   font-size: 2rem;
 }
 
 h3 {
   font-family: var(--font-space-mono), monospace;
-  color: #1BF2A3;
-  font-size: 1.5rem;
+  color: var(--color-primary);
+  font-size: 1.2rem;
 }
 
 body {
-  background: #737373;
+  background: var(--color-black);
   font-family: "Space Mono", monospace;
 }
 
 header {
-  background: #0D0D0D;
-  color: #1BF2A3;
+  background: var(--color-black);
+  color: var(--color-primary);
   padding: 1rem;
 }
 
-.letterbox {
-  margin-top: auto;
-  color: #1BA665;
-  background: #0D0D0D;
+footer {
+  background: var(--color-black);
+  color: var(--color-primary);
   padding: 1rem;
 }
 
@@ -59,3 +57,4 @@ header {
 .bild:hover {
   transform: scale(1.03);
 }
+
