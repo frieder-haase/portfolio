@@ -27,7 +27,14 @@ h2 {
 h3 {
   font-family: var(--font-space-mono), monospace;
   color: var(--color-primary);
-  font-size: 1.2rem;
+  font-size: 1.8rem;
+}
+
+.untertitel {
+  font-family: var(--font-space-mono), monospace;
+  color: white;
+  font-size: 1rem;
+  margin-top: 0.5rem;
 }
 
 body {
@@ -55,6 +62,7 @@ footer {
 }
 
 .bild:hover {
-  transform: scale(1.03);
+  /* transform: scale(1.03); */
 }
+
 
