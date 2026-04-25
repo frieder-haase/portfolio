@@ -34,17 +34,17 @@ export default function Intro() {
 
     return (
         <section>
-            <div className="container mx-auto mt-16 mb-26">
-                <h2 className={`!text-4xl font-bold text-primary transition-opacity duration-[1500ms] delay-500 whitespace-pre-line ${done ? "opacity-40" : "opacity-100"}`}>
+            <div className="container mx-auto mt-8 mb-12 lg:mt-16 lg:mb-26 px-4 lg:px-0">
+                <h2 className={`!text-2xl lg:!text-4xl font-bold text-primary transition-opacity duration-[1500ms] delay-500 whitespace-pre-line text-center lg:text-left ${done ? "opacity-40" : "opacity-100"}`}>
                     {shouldSkip ? (
-                        "Hey, ich bin Fred. Anwendungsentwickler aus Leipzig.\nWillkommen auf meinem Portfolio."
+                        "Hey, ich bin Fred. Anwendungs­entwickler aus Leipzig.\nWillkommen auf meinem Portfolio."
                     ) : (
                         <TypeAnimation
                             sequence={[
                                 "Hey, ich bin Fred.",
                                 500,
-                                "Hey, ich bin Fred. Anwendungsentwickler aus Leipzig.",
-                                "Hey, ich bin Fred. Anwendungsentwickler aus Leipzig.\nWillkommen auf meinem Portfolio.",
+                                "Hey, ich bin Fred. Anwendungs­entwickler aus Leipzig.",
+                                "Hey, ich bin Fred. Anwendungs­entwickler aus Leipzig.\nWillkommen auf meinem Portfolio.",
                                 () => {
                                     setDone(true);
                                     setTimeout(() => setIntroDone(true), 300);

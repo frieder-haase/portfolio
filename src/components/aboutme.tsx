@@ -64,11 +64,11 @@ export default function AboutMe() {
     return (
         <section
             ref={ref}
-            className={`container mx-auto my-16 transition-opacity duration-1000 ${visible ? "opacity-100" : "opacity-0"}`}
+            className={`container mx-auto my-8 lg:my-16 px-4 lg:px-0 transition-opacity duration-1000 ${visible ? "opacity-100" : "opacity-0"}`}
         >
-            <h2 className="text-2xl font-bold text-primary mb-6">Über mich</h2>
-            <div className="flex">
-                <div className="w-1/2">
+            <h2 className="text-2xl font-bold text-primary mb-6 px-4 lg:px-0">Über mich</h2>
+            <div className="flex flex-col lg:flex-row gap-8 lg:gap-0 px-4 lg:px-0">
+                <div className="w-full lg:w-1/2">
                     <p className="text-white/80 max-w-2xl leading-relaxed">
                         Als ursprünglich gelernter Game Desinger, 3D Artist und u.a. Grafikdesigner bringe ich sowohl Veständnis und Passion für die technische und auch die kreative Seite der Softwareentwicklung mit. 
                         <br className="mb-4"></br>
@@ -77,7 +77,7 @@ export default function AboutMe() {
                         Durch meine diverse Erfahrung kann ich mich in verschiedenen Bereichen der Softwareentwicklung einbringen, weshalb ich letztendlich auch das Ziel habe mich als Full-Stack Entwickler zu etablieren. 
                     </p>
                 </div>
-                <div className="w-1/2 flex flex-col gap-4">
+                <div className="w-full lg:w-1/2 flex flex-col gap-4">
                     <div className={`grid grid-cols-3 gap-4 transition-opacity duration-300 ${fading ? "opacity-0" : "opacity-100"}`}>
                         {logoGroups[activeGroup].map((logo) => (
                             <div key={logo.label} className="flex flex-col items-center gap-1">

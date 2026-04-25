@@ -41,8 +41,8 @@ export default function Projekte() {
     const { introDone } = useIntro();
 
     return (
-        <section className="container mx-auto my-16">
-            <div className="grid grid-cols-2 gap-6">
+        <section className="container mx-auto my-8 lg:my-16 px-4 lg:px-0">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {projects.map((project, index) => (
                     <div
                         key={project.title + index}
@@ -54,7 +54,8 @@ export default function Projekte() {
                     >
                         <div className="relative overflow-hidden group rounded">
                             <img src={project.image} alt={project.title} className="bild w-full" />
-                            <div className="absolute inset-x-0 bottom-0 bg-black/80 p-4 transition-transform duration-300 translate-y-[calc(100%-4.5rem)] group-hover:translate-y-0">
+                            {/* Hover Card für lg Bildschirme */}
+                            <div className="hidden lg:block absolute inset-x-0 bottom-0 bg-black/80 p-4 transition-transform duration-300 translate-y-[calc(100%-4.5rem)] group-hover:translate-y-0">
                                 <h3 className="!text-xxl font-bold text-primary mb-3">{project.title}</h3>
                                 <p className="text-sm text-white/80 mb-3">{project.description}</p>
                                 <div className="flex items-center justify-between gap-2 flex-wrap">
@@ -69,6 +70,23 @@ export default function Projekte() {
                                         <a href={project.href} target="_blank" rel="noopener noreferrer" className="text-base text-primary underline underline-offset-2 hover:opacity-70">Website öffnen →</a>
                                     )}
                                 </div>
+                            </div>
+                        </div>
+                        {/* Text darunter für mobile/tablet */}
+                        <div className="lg:hidden bg-black/80 p-4">
+                            <h3 className="!text-xxl font-bold text-primary mb-3">{project.title}</h3>
+                            <p className="text-sm text-white/80 mb-3">{project.description}</p>
+                            <div className="flex items-center justify-between gap-2 flex-wrap">
+                                <div className="flex gap-2 flex-wrap">
+                                    {project.tags.map((tag) => (
+                                        <span key={tag} className="text-xs border border-primary text-primary px-2 py-0.5">{tag}</span>
+                                    ))}
+                                </div>
+                                {project.internal ? (
+                                    <Link href={project.href} className="text-base text-primary underline underline-offset-2 hover:opacity-70">Mehr erfahren →</Link>
+                                ) : (
+                                    <a href={project.href} target="_blank" rel="noopener noreferrer" className="text-base text-primary underline underline-offset-2 hover:opacity-70">Website öffnen →</a>
+                                )}
                             </div>
                         </div>
                     </div>
