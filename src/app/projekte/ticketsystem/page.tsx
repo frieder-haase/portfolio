@@ -1,12 +1,38 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 
 export default function TicketsystemPage() {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [visibleSections, setVisibleSections] = useState<Record<string, boolean>>({});
+
+  useEffect(() => {
+    const delays = {
+      header: 0,
+      challenge: 200,
+      techStack: 400,
+      screenshots: 600,
+      features: 800,
+      result: 1000,
+      button: 1200,
+    };
+
+    Object.entries(delays).forEach(([section, delay]) => {
+      setTimeout(() => {
+        setVisibleSections(prev => ({ ...prev, [section]: true }));
+      }, delay);
+    });
+  }, []);
   return (
     <main className="container mx-auto px-4 py-12">
       <div className="mx-auto max-w-6xl">
         {/* Header */}
-        <div className="mb-12">
+        <div 
+          className="mb-12 transition-opacity duration-500"
+          style={{ opacity: visibleSections.header ? 1 : 0 }}
+        >
           <p className="mb-3 text-sm uppercase tracking-[0.2em] text-gray">IHK-Abschlussprojekt</p>
           <h1 className="mb-3">Ticketsystem für Maßnahme-Direkt</h1>
           <p className="max-w-3xl text-white/70">
@@ -15,20 +41,11 @@ export default function TicketsystemPage() {
           </p>
         </div>
 
-        {/* Hero Image */}
-        <div className="mb-12 overflow-hidden rounded border border-primary/30">
-          <Image
-            src="/assets/ticketsystem/admin_dashboard.png"
-            alt="Admin-Dashboard des Support Ticket-Systems für Maßnahme-Direkt"
-            width={1400}
-            height={800}
-            className="h-auto w-full"
-            priority
-          />
-        </div>
-
         {/* Projektkontext */}
-        <section className="mb-12 rounded border border-primary/30 bg-black/40 p-8">
+        <section 
+          className="mb-12 rounded border border-primary/30 bg-black/40 p-8 transition-opacity duration-500"
+          style={{ opacity: visibleSections.challenge ? 1 : 0 }}
+        >
           <h2 className="mb-4">Die Herausforderung</h2>
           <p className="mb-4 leading-relaxed text-white/85">
             Maßnahme-Direkt ist eine Plattform für die elektronische Maßnahmeabwicklung (EMAW), die Bildungsträgern
@@ -42,78 +59,11 @@ export default function TicketsystemPage() {
           </p>
         </section>
 
-        {/* Zwei-Frontend-Architektur */}
-        <section className="mb-12">
-          <h2 className="mb-6">Zwei-Frontend-Architektur</h2>
-          <div className="grid gap-6 md:grid-cols-2">
-            <div className="rounded border border-primary/30 bg-black/40 p-6">
-              <h3 className="mb-3 !text-lg text-primary">Nutzer-Frontend (Symfony + Twig)</h3>
-              <p className="mb-4 text-sm leading-relaxed text-white/85">
-                Klassisches, server-seitiges Dashboard für Bildungsträger mit bewährter Symfony-Architektur.
-                Einfache Bedienung und nahtlose Integration in bestehende maßnahme-direkt Accounts.
-              </p>
-              <ul className="space-y-2 text-sm text-white/75">
-                <li>• Single Sign-On mit vorhandenen Zugangsdaten</li>
-                <li>• Intuitive Ticketerstellung mit Dateianhängen</li>
-                <li>• Echtzeit-Limitanzeige nach Priorität</li>
-                <li>• Responsive Design für alle Geräte</li>
-              </ul>
-            </div>
-            <div className="rounded border border-primary/30 bg-black/40 p-6">
-              <h3 className="mb-3 !text-lg text-primary">Admin-Frontend (React + Vite)</h3>
-              <p className="mb-4 text-sm leading-relaxed text-white/85">
-                Moderne Single-Page Application für Support-Mitarbeiter mit Hot-Reloading,
-                Echtzeit-Updates und schneller Navigation zwischen Tickets.
-              </p>
-              <ul className="space-y-2 text-sm text-white/75">
-                <li>• KPI-Dashboard mit Live-Metriken</li>
-                <li>• Visuelle Priorisierung (Farbcodes & Icons)</li>
-                <li>• Ticket-Take/Release für Team-Koordination</li>
-                <li>• Archiv mit Such- und Filterfunktionen</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
         {/* Technologie Stack */}
-        <section className="mb-12">
-          <h2 className="mb-6">Technologie-Stack</h2>
-          <div className="grid gap-6 md:grid-cols-3">
-            <div className="rounded border border-primary/30 bg-black/40 p-6">
-              <h3 className="mb-3 !text-lg">Backend</h3>
-              <ul className="space-y-2 text-sm text-white/85">
-                <li>• Symfony 6.1.12</li>
-                <li>• PHP mit Doctrine ORM</li>
-                <li>• REST-API (JSON)</li>
-                <li>• Twig Templates</li>
-                <li>• Multi-DB-Anbindung</li>
-              </ul>
-            </div>
-            <div className="rounded border border-primary/30 bg-black/40 p-6">
-              <h3 className="mb-3 !text-lg">Frontend</h3>
-              <ul className="space-y-2 text-sm text-white/85">
-                <li>• React 19.1.1</li>
-                <li>• TypeScript</li>
-                <li>• Vite Build-Tool</li>
-                <li>• Tailwind CSS</li>
-                <li>• Responsive Design</li>
-              </ul>
-            </div>
-            <div className="rounded border border-primary/30 bg-black/40 p-6">
-              <h3 className="mb-3 !text-lg">Infrastructure</h3>
-              <ul className="space-y-2 text-sm text-white/85">
-                <li>• MySQL Datenbank</li>
-                <li>• Docker Container</li>
-                <li>• Git Versionskontrolle</li>
-                <li>• E-Mail Integration</li>
-                <li>• Cronjob Automation</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        {/* Technologie Stack */}
-        <section className="mb-12">
+        <section 
+          className="mb-12 transition-opacity duration-500"
+          style={{ opacity: visibleSections.techStack ? 1 : 0 }}
+        >
           <h2 className="mb-6">Technologie-Stack</h2>
           <div className="grid gap-6 md:grid-cols-3">
             <div className="rounded border border-primary/30 bg-black/40 p-6">
@@ -149,7 +99,10 @@ export default function TicketsystemPage() {
         </section>
 
         {/* Screenshots */}
-        <section className="mb-12">
+        <section 
+          className="mb-12 transition-opacity duration-500"
+          style={{ opacity: visibleSections.screenshots ? 1 : 0 }}
+        >
           <h2 className="mb-6">Einblicke in die Benutzeroberflächen</h2>
           
           {/* Nutzer-Frontend Screenshots */}
@@ -157,7 +110,13 @@ export default function TicketsystemPage() {
             <h3 className="mb-4 !text-lg text-primary">Nutzer-Frontend (Symfony)</h3>
             <div className="grid gap-6 md:grid-cols-2">
               <div className="rounded border border-primary/30 bg-black/40 p-4">
-                <div className="mb-3 aspect-video overflow-hidden rounded bg-black/60">
+                <div 
+                  className="mb-3 aspect-video overflow-hidden rounded bg-black/60 cursor-pointer hover:opacity-80 transition"
+                  onClick={(e) => {
+                    const img = e.currentTarget.querySelector('img');
+                    if (img) setSelectedImage(img.src);
+                  }}
+                >
                   <div className="flex h-full items-center justify-center text-sm text-white/40">
                     <img src="/assets/ticketsystem/nutzer_login.png" alt="Loginformular für die Nutzer" />
                   </div>
@@ -167,7 +126,13 @@ export default function TicketsystemPage() {
                 </p>
               </div>
               <div className="rounded border border-primary/30 bg-black/40 p-4">
-                <div className="mb-3 aspect-video overflow-hidden rounded bg-black/60">
+                <div 
+                  className="mb-3 aspect-video overflow-hidden rounded bg-black/60 cursor-pointer hover:opacity-80 transition"
+                  onClick={(e) => {
+                    const img = e.currentTarget.querySelector('img');
+                    if (img) setSelectedImage(img.src);
+                  }}
+                >
                   <div className="flex h-full items-center justify-center text-sm text-white/40">
                     <img src="/assets/ticketsystem/nutzer_dashboard.png" alt="Dashboard für die Nutzer" />
                   </div>
@@ -177,7 +142,13 @@ export default function TicketsystemPage() {
                 </p>
               </div>
               <div className="rounded border border-primary/30 bg-black/40 p-4">
-                <div className="mb-3 aspect-video overflow-hidden rounded bg-black/60">
+                <div 
+                  className="mb-3 aspect-video overflow-hidden rounded bg-black/60 cursor-pointer hover:opacity-80 transition"
+                  onClick={(e) => {
+                    const img = e.currentTarget.querySelector('img');
+                    if (img) setSelectedImage(img.src);
+                  }}
+                >
                   <div className="flex h-full items-center justify-center text-sm text-white/40">
                     <img src="/assets/ticketsystem/nutzer_ticketform.png" alt="Ticketerstellungs-Formular für die Nutzer" />
                   </div>
@@ -187,7 +158,13 @@ export default function TicketsystemPage() {
                 </p>
               </div>
               <div className="rounded border border-primary/30 bg-black/40 p-4">
-                <div className="mb-3 aspect-video overflow-hidden rounded bg-black/60">
+                <div 
+                  className="mb-3 aspect-video overflow-hidden rounded bg-black/60 cursor-pointer hover:opacity-80 transition"
+                  onClick={(e) => {
+                    const img = e.currentTarget.querySelector('img');
+                    if (img) setSelectedImage(img.src);
+                  }}
+                >
                   <div className="flex h-full items-center justify-center text-sm text-white/40">
                     <img src="/assets/ticketsystem/nutzer_ticketform.png" alt="Ticketdetails für die Nutzer" />
                   </div>
@@ -204,7 +181,13 @@ export default function TicketsystemPage() {
             <h3 className="mb-4 !text-lg text-primary">Admin-Frontend (React)</h3>
             <div className="grid gap-6 md:grid-cols-2">
               <div className="rounded border border-primary/30 bg-black/40 p-4">
-                <div className="mb-3 aspect-video overflow-hidden rounded bg-black/60">
+                <div 
+                  className="mb-3 aspect-video overflow-hidden rounded bg-black/60 cursor-pointer hover:opacity-80 transition"
+                  onClick={(e) => {
+                    const img = e.currentTarget.querySelector('img');
+                    if (img) setSelectedImage(img.src);
+                  }}
+                >
                   <div className="flex h-full items-center justify-center text-sm text-white/40">
                     <img src="/assets/ticketsystem/admin_dashboard.png" alt="Dashboard für die Admins" />
                   </div>
@@ -214,7 +197,13 @@ export default function TicketsystemPage() {
                 </p>
               </div>
               <div className="rounded border border-primary/30 bg-black/40 p-4">
-                <div className="mb-3 aspect-video overflow-hidden rounded bg-black/60">
+                <div 
+                  className="mb-3 aspect-video overflow-hidden rounded bg-black/60 cursor-pointer hover:opacity-80 transition"
+                  onClick={(e) => {
+                    const img = e.currentTarget.querySelector('img');
+                    if (img) setSelectedImage(img.src);
+                  }}
+                >
                   <div className="flex h-full items-center justify-center text-sm text-white/40">
                     <img src="/assets/ticketsystem/admin_ticketform.png" alt="Ticketbearbeitung für die Admins" />
                   </div>
@@ -224,7 +213,13 @@ export default function TicketsystemPage() {
                 </p>
               </div>
               <div className="rounded border border-primary/30 bg-black/40 p-4">
-                <div className="mb-3 aspect-video overflow-hidden rounded bg-black/60">
+                <div 
+                  className="mb-3 aspect-video overflow-hidden rounded bg-black/60 cursor-pointer hover:opacity-80 transition"
+                  onClick={(e) => {
+                    const img = e.currentTarget.querySelector('img');
+                    if (img) setSelectedImage(img.src);
+                  }}
+                >
                   <div className="flex h-full items-center justify-center text-sm text-white/40">
                     <img src="/assets/ticketsystem/admin_userprofile.png" alt="Benutzerverwaltung für die Admins" />
                   </div>
@@ -234,7 +229,13 @@ export default function TicketsystemPage() {
                 </p>
               </div>
               <div className="rounded border border-primary/30 bg-black/40 p-4">
-                <div className="mb-3 aspect-video overflow-hidden rounded bg-black/60">
+                <div 
+                  className="mb-3 aspect-video overflow-hidden rounded bg-black/60 cursor-pointer hover:opacity-80 transition"
+                  onClick={(e) => {
+                    const img = e.currentTarget.querySelector('img');
+                    if (img) setSelectedImage(img.src);
+                  }}
+                >
                   <div className="flex h-full items-center justify-center text-sm text-white/40">
                     <img src="/assets/ticketsystem/admin_tracking.png" alt="Analytics-Übersicht für die Admins" />
                   </div>
@@ -248,7 +249,10 @@ export default function TicketsystemPage() {
         </section>
 
                 {/* Key Features */}
-        <section className="mb-12">
+        <section 
+          className="mb-12 transition-opacity duration-500"
+          style={{ opacity: visibleSections.features ? 1 : 0 }}
+        >
           <h2 className="mb-6">Kern-Features & UX-Highlights</h2>
           
           {/* Nutzer-Features */}
@@ -363,7 +367,10 @@ export default function TicketsystemPage() {
         </section>
 
         {/* Ergebnis & Mehrwert */}
-        <section className="mb-12 rounded border border-primary/30 bg-black/40 p-8">
+        <section 
+          className="mb-12 rounded border border-primary/30 bg-black/40 p-8 transition-opacity duration-500"
+          style={{ opacity: visibleSections.result ? 1 : 0 }}
+        >
           <h2 className="mb-4">Projektergebnis & Business-Mehrwert</h2>
           <div className="space-y-4 text-white/85">
             <div>
@@ -419,7 +426,10 @@ export default function TicketsystemPage() {
         </section>
 
         {/* Zurück Button */}
-        <div className="flex justify-center">
+        <div 
+          className="flex justify-center transition-opacity duration-500"
+          style={{ opacity: visibleSections.button ? 1 : 0 }}
+        >
           <Link
             href="/"
             className="inline-flex items-center gap-2 rounded border border-primary px-6 py-3 text-primary transition hover:bg-primary hover:text-black"
@@ -428,6 +438,32 @@ export default function TicketsystemPage() {
           </Link>
         </div>
       </div>
+
+      {/* Lightbox Modal */}
+      {selectedImage && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
+          onClick={() => setSelectedImage(null)}
+        >
+          <div 
+            className="relative max-w-4xl w-full max-h-[90vh] flex flex-col"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setSelectedImage(null)}
+              className="self-end mb-2 bg-primary text-black w-10 h-10 rounded-full flex items-center justify-center hover:bg-primary/80 transition"
+              aria-label="Schließen"
+            >
+              ✕
+            </button>
+            <img
+              src={selectedImage}
+              alt="Vergrößerte Vorschau"
+              className="w-full h-auto rounded"
+            />
+          </div>
+        </div>
+      )}
     </main>
   );
 }
