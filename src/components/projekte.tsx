@@ -5,7 +5,7 @@ import { useIntro } from "@/context/IntroContext";
 const projects = [
     {
         title: "Ticketsystem für maßnahme-direkt.de",
-        image: "./assets/projekte/Ticketsystem.png",
+        image: "/assets/projekte/Ticketsystem.png",
         description: "Full-Stack Umsetzung eines internen Ticketsystems zur Verwaltung von Support-Anfragen im Rahmen meiner IHK Abschlussarbeit.",
         tags: ["React", "Symfony", "Rest-API", "Doctrine", "TypeScript", "PHP"],
         href: "/projekte/ticketsystem",
@@ -13,7 +13,7 @@ const projects = [
     },
     {
         title: "Website für tankschutz-halle.de",
-        image: "./assets/projekte/TankschutzHalle.png",
+        image: "/assets/projekte/TankschutzHalle.png",
         description: "Umsetzung einer Webseite nach vorgegebenem Design für einen Dienstleister im Bereich Tankreinigung.",
         tags: ["WordPress", "Bootstrap", "PHP"],
         href: "https://tankschutz-halle.de",
@@ -21,7 +21,7 @@ const projects = [
     },
     {
         title: "Website für jens-iwan.de",
-        image: "./assets/projekte/JensIwan.png",
+        image: "/assets/projekte/JensIwan.png",
         description: "Umsetzung einer Webseite nach vorgegebenem Design für einen Baugutachter.",
         tags: ["WordPress", "Bootstrap", "PHP"],
         href: "https://jens-iwan.de",
@@ -29,7 +29,7 @@ const projects = [
     },
     {
         title: "Suche für AfricanExplorer.de",
-        image: "./assets/projekte/AfricanExplorer.png",
+        image: "/assets/projekte/AfricanExplorer.png",
         description: "Umsetzung einer Suchfunktion für die bestehende Webseite eines Reiseveranstalters, welche die WordPress Unterseiten nach den angegebenen Suchkriterien filtert.",
         tags: ["WordPress", "Bootstrap", "PHP"],
         href: "https://africanexplorer.de",
