@@ -9,7 +9,7 @@ const logoGroups = [
         { src: "/assets/logos/javascript.svg", label: "JavaScript", objectFit: "object-contain" },
         { src: "/assets/logos/react.svg", label: "React", objectFit: "object-fit" },
         { src: "/assets/logos/symfony.svg", label: "Symfony", objectFit: "object-contain" },
-        { src: "/assets/logos/nodejs.svg", label: "Node.js", objectFit: "object-contain" },
+        { src: "/assets/logos/nextjs.png", label: "Next.js", objectFit: "object-contain" },
     ],
     [
         { src: "/assets/logos/php.svg", label: "PHP", objectFit: "object-contain" },
