@@ -3,9 +3,55 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import ImageGallery from "@/components/ImageGallery";
+
+interface GalleryImage {
+  src: string;
+  title: string;
+  description: string;
+}
+
+const GALLERY_IMAGES: GalleryImage[] = [
+  {
+    src: "/assets/ticketsystem/nutzer_login.png",
+    title: "Login - Nutzer",
+    description: "Authentifizierung mit Trägernummer, Username und Passwort für das Kundenportal.",
+  },
+  {
+    src: "/assets/ticketsystem/nutzer_dashboard.png",
+    title: "Dashboard - Nutzer",
+    description: "Übersicht mit Filteroptionen, verfügbaren Limits und aktiven Tickets für Bildungsträger.",
+  },
+  {
+    src: "/assets/ticketsystem/nutzer_ticketform.png",
+    title: "Ticketerstellung - Nutzer",
+    description: "Intuitive Eingabemaske mit Echtzeit-Validierung, Prioritätsauswahl und Datei-Upload bis 8 MB.",
+  },
+  {
+    src: "/assets/ticketsystem/admin_dashboard.png",
+    title: "Dashboard - Admin",
+    description: "KPI-Cards, Suchfelder und Ticketliste mit Uhr-Icons für schnellen Überblick über Bearbeitungszeiten.",
+  },
+  {
+    src: "/assets/ticketsystem/admin_ticketform.png",
+    title: "Ticketbearbeitung - Admin",
+    description: "Antwort-Editor, Anhänge und chronologischer Verlauf aller Kommunikationen mit dem Kunden.",
+  },
+  {
+    src: "/assets/ticketsystem/admin_userprofile.png",
+    title: "Benutzerverwaltung - Admin",
+    description: "Träger-Übersicht mit Plan-Status, Limits und Kontingent-Verwaltung für alle Kunden.",
+  },
+  {
+    src: "/assets/ticketsystem/admin_tracking.png",
+    title: "Analytics - Admin",
+    description: "Kreisdiagramme und Zeitraum-Filter für detaillierte Auswertungen und Statistiken.",
+  },
+];
 
 export default function TicketsystemPage() {
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [galleryOpen, setGalleryOpen] = useState(false);
+  const [galleryIndex, setGalleryIndex] = useState(0);
   const [visibleSections, setVisibleSections] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
@@ -112,9 +158,9 @@ export default function TicketsystemPage() {
               <div className="rounded border border-primary/30 bg-black/40 p-4">
                 <div 
                   className="mb-3 aspect-video overflow-hidden rounded bg-black/60 cursor-pointer hover:opacity-80 transition"
-                  onClick={(e) => {
-                    const img = e.currentTarget.querySelector('img');
-                    if (img) setSelectedImage(img.src);
+                  onClick={() => {
+                    setGalleryIndex(0);
+                    setGalleryOpen(true);
                   }}
                 >
                   <div className="flex h-full items-center justify-center text-sm text-white/40">
@@ -128,9 +174,9 @@ export default function TicketsystemPage() {
               <div className="rounded border border-primary/30 bg-black/40 p-4">
                 <div 
                   className="mb-3 aspect-video overflow-hidden rounded bg-black/60 cursor-pointer hover:opacity-80 transition"
-                  onClick={(e) => {
-                    const img = e.currentTarget.querySelector('img');
-                    if (img) setSelectedImage(img.src);
+                  onClick={() => {
+                    setGalleryIndex(1);
+                    setGalleryOpen(true);
                   }}
                 >
                   <div className="flex h-full items-center justify-center text-sm text-white/40">
@@ -144,9 +190,9 @@ export default function TicketsystemPage() {
               <div className="rounded border border-primary/30 bg-black/40 p-4">
                 <div 
                   className="mb-3 aspect-video overflow-hidden rounded bg-black/60 cursor-pointer hover:opacity-80 transition"
-                  onClick={(e) => {
-                    const img = e.currentTarget.querySelector('img');
-                    if (img) setSelectedImage(img.src);
+                  onClick={() => {
+                    setGalleryIndex(2);
+                    setGalleryOpen(true);
                   }}
                 >
                   <div className="flex h-full items-center justify-center text-sm text-white/40">
@@ -160,9 +206,9 @@ export default function TicketsystemPage() {
               <div className="rounded border border-primary/30 bg-black/40 p-4">
                 <div 
                   className="mb-3 aspect-video overflow-hidden rounded bg-black/60 cursor-pointer hover:opacity-80 transition"
-                  onClick={(e) => {
-                    const img = e.currentTarget.querySelector('img');
-                    if (img) setSelectedImage(img.src);
+                  onClick={() => {
+                    setGalleryIndex(2);
+                    setGalleryOpen(true);
                   }}
                 >
                   <div className="flex h-full items-center justify-center text-sm text-white/40">
@@ -183,9 +229,9 @@ export default function TicketsystemPage() {
               <div className="rounded border border-primary/30 bg-black/40 p-4">
                 <div 
                   className="mb-3 aspect-video overflow-hidden rounded bg-black/60 cursor-pointer hover:opacity-80 transition"
-                  onClick={(e) => {
-                    const img = e.currentTarget.querySelector('img');
-                    if (img) setSelectedImage(img.src);
+                  onClick={() => {
+                    setGalleryIndex(3);
+                    setGalleryOpen(true);
                   }}
                 >
                   <div className="flex h-full items-center justify-center text-sm text-white/40">
@@ -199,9 +245,9 @@ export default function TicketsystemPage() {
               <div className="rounded border border-primary/30 bg-black/40 p-4">
                 <div 
                   className="mb-3 aspect-video overflow-hidden rounded bg-black/60 cursor-pointer hover:opacity-80 transition"
-                  onClick={(e) => {
-                    const img = e.currentTarget.querySelector('img');
-                    if (img) setSelectedImage(img.src);
+                  onClick={() => {
+                    setGalleryIndex(4);
+                    setGalleryOpen(true);
                   }}
                 >
                   <div className="flex h-full items-center justify-center text-sm text-white/40">
@@ -215,9 +261,9 @@ export default function TicketsystemPage() {
               <div className="rounded border border-primary/30 bg-black/40 p-4">
                 <div 
                   className="mb-3 aspect-video overflow-hidden rounded bg-black/60 cursor-pointer hover:opacity-80 transition"
-                  onClick={(e) => {
-                    const img = e.currentTarget.querySelector('img');
-                    if (img) setSelectedImage(img.src);
+                  onClick={() => {
+                    setGalleryIndex(5);
+                    setGalleryOpen(true);
                   }}
                 >
                   <div className="flex h-full items-center justify-center text-sm text-white/40">
@@ -231,9 +277,9 @@ export default function TicketsystemPage() {
               <div className="rounded border border-primary/30 bg-black/40 p-4">
                 <div 
                   className="mb-3 aspect-video overflow-hidden rounded bg-black/60 cursor-pointer hover:opacity-80 transition"
-                  onClick={(e) => {
-                    const img = e.currentTarget.querySelector('img');
-                    if (img) setSelectedImage(img.src);
+                  onClick={() => {
+                    setGalleryIndex(6);
+                    setGalleryOpen(true);
                   }}
                 >
                   <div className="flex h-full items-center justify-center text-sm text-white/40">
@@ -439,30 +485,15 @@ export default function TicketsystemPage() {
         </div>
       </div>
 
-      {/* Lightbox Modal */}
-      {selectedImage && (
-        <div 
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
-          onClick={() => setSelectedImage(null)}
-        >
-          <div 
-            className="relative max-w-4xl w-full max-h-[90vh] flex flex-col"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              onClick={() => setSelectedImage(null)}
-              className="self-end mb-2 bg-primary text-black w-10 h-10 rounded-full flex items-center justify-center hover:bg-primary/80 transition"
-              aria-label="Schließen"
-            >
-              ✕
-            </button>
-            <img
-              src={selectedImage}
-              alt="Vergrößerte Vorschau"
-              className="w-full h-auto rounded"
-            />
-          </div>
-        </div>
+      {/* Image Gallery Modal */}
+      {galleryOpen && (
+        <ImageGallery
+          images={GALLERY_IMAGES}
+          currentIndex={galleryIndex}
+          onClose={() => setGalleryOpen(false)}
+          onPrevious={() => galleryIndex > 0 && setGalleryIndex(galleryIndex - 1)}
+          onNext={() => galleryIndex < GALLERY_IMAGES.length - 1 && setGalleryIndex(galleryIndex + 1)}
+        />
       )}
     </main>
   );
