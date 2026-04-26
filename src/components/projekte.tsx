@@ -54,8 +54,8 @@ export default function Projekte() {
                     >
                         <div className="relative overflow-hidden group rounded">
                             <img src={project.image} alt={project.title} className="bild w-full" />
-                            {/* Hover Card für lg Bildschirme */}
-                            <div className="hidden lg:block absolute inset-x-0 bottom-0 bg-black/80 p-4 transition-transform duration-300 translate-y-[calc(100%-4.5rem)] group-hover:translate-y-0">
+                            {/* Hover Card für xl Bildschirme */}
+                            <div className="hidden xl:block absolute inset-x-0 bottom-0 bg-black/80 p-4 transition-transform duration-300 translate-y-[calc(100%-4.5rem)] group-hover:translate-y-0">
                                 <h3 className="!text-xxl font-bold text-primary mb-3">{project.title}</h3>
                                 <p className="text-sm text-white/80 mb-3">{project.description}</p>
                                 <div className="flex items-center justify-between gap-2 flex-wrap">
@@ -73,7 +73,7 @@ export default function Projekte() {
                             </div>
                         </div>
                         {/* Text darunter für mobile/tablet */}
-                        <div className="lg:hidden bg-black/80 p-4">
+                        <div className="xl:hidden bg-black/80 p-4">
                             <h3 className="!text-xxl font-bold text-primary mb-3">{project.title}</h3>
                             <p className="text-sm text-white/80 mb-3">{project.description}</p>
                             <div className="flex items-center justify-between gap-2 flex-wrap">

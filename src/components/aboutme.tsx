@@ -70,9 +70,9 @@ export default function AboutMe() {
             <div className="flex flex-col lg:flex-row gap-8 lg:gap-0 px-4 lg:px-0">
                 <div className="w-full lg:w-1/2">
                     <p className="text-white/80 max-w-2xl leading-relaxed">
-                        Als ursprünglich gelernter Game Desinger, 3D Artist und u.a. Grafikdesigner bringe ich sowohl Veständnis und Passion für die technische und auch die kreative Seite der Softwareentwicklung mit. 
+                        Als ursprünglich gelernter Game Designer, 3D Artist und u.a. Grafikdesigner bringe ich sowohl Verständnis und Passion für die technische als auch die kreative Seite der Softwareentwicklung mit. 
                         <br className="mb-4"></br>
-                        Nichts ist für mich frustriender als eine schlechte UX, das gilt sowohl für Spiele als auch für jegliche andere Software. Daher ist es mir besonders wichtig, bei meinen Projekten auf eine intuitive und ansprechende Gestaltung zu achten. 
+                        Nichts ist für mich frustrierender als eine schlechte UX, das gilt sowohl für Spiele, als auch für jegliche andere Software. Daher ist es mir besonders wichtig, bei meinen Projekten auf eine intuitive und ansprechende Gestaltung zu achten. 
                         <br className="mb-4"></br>
                         Durch meine diverse Erfahrung kann ich mich in verschiedenen Bereichen der Softwareentwicklung einbringen, weshalb ich letztendlich auch das Ziel habe mich als Full-Stack Entwickler zu etablieren. 
                     </p>

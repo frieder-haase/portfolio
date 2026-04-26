@@ -28,6 +28,11 @@ const GALLERY_IMAGES: GalleryImage[] = [
     description: "Intuitive Eingabemaske mit Echtzeit-Validierung, Prioritätsauswahl und Datei-Upload bis 8 MB.",
   },
   {
+    src: "/assets/ticketsystem/nutzer_ticket.png",
+    title: "Ticketdetails - Nutzer",
+    description: "Detailansicht eines Tickets mit vollständiger Kommunikationshistorie und Möglichkeit zur Antwort.",
+  },
+  {
     src: "/assets/ticketsystem/admin_dashboard.png",
     title: "Dashboard - Admin",
     description: "KPI-Cards, Suchfelder und Ticketliste mit Uhr-Icons für schnellen Überblick über Bearbeitungszeiten.",
@@ -168,7 +173,7 @@ export default function TicketsystemPage() {
                   </div>
                 </div>
                 <p className="text-sm text-white/70">
-                  <strong className="text-white">Login:</strong> Authentifizierung mit Trägernummer, Username und Passwort
+                  <strong className="text-white">Login:</strong> Nutzer können sich mit den vorhandenen Logindaten von maßnahme-direkt.de anmelden.
                 </p>
               </div>
               <div className="rounded border border-primary/30 bg-black/40 p-4">
@@ -184,7 +189,7 @@ export default function TicketsystemPage() {
                   </div>
                 </div>
                 <p className="text-sm text-white/70">
-                  <strong className="text-white">Dashboard:</strong> Übersicht mit Filteroptionen und verfügbaren Limits
+                  <strong className="text-white">Dashboard:</strong> Übersicht über die erstellten Tickets mit Filteroptionen und verfügbaren Limits
                 </p>
               </div>
               <div className="rounded border border-primary/30 bg-black/40 p-4">
@@ -200,14 +205,14 @@ export default function TicketsystemPage() {
                   </div>
                 </div>
                 <p className="text-sm text-white/70">
-                  <strong className="text-white">Ticketerstellung:</strong> Intuitive Eingabemaske mit Datei-Upload
+                  <strong className="text-white">Ticketerstellung:</strong> Erstellformular für die Nutzer mit Prioritätsauswahl und Datei-Upload bis 8 MB
                 </p>
               </div>
               <div className="rounded border border-primary/30 bg-black/40 p-4">
                 <div 
                   className="mb-3 aspect-video overflow-hidden rounded bg-black/60 cursor-pointer hover:opacity-80 transition"
                   onClick={() => {
-                    setGalleryIndex(2);
+                    setGalleryIndex(3);
                     setGalleryOpen(true);
                   }}
                 >
@@ -216,7 +221,7 @@ export default function TicketsystemPage() {
                   </div>
                 </div>
                 <p className="text-sm text-white/70">
-                  <strong className="text-white">Ticketdetails</strong> Nutzer können ihre erstellten Tickets einsehen und Updates zu dem Anliegen hinzufügen und einsehen.
+                  <strong className="text-white">Ticketdetails:</strong> Nutzer können ihre erstellten Tickets einsehen und Updates zu dem Anliegen hinzufügen und einsehen.
                 </p>
               </div>
             </div>
@@ -230,7 +235,7 @@ export default function TicketsystemPage() {
                 <div 
                   className="mb-3 aspect-video overflow-hidden rounded bg-black/60 cursor-pointer hover:opacity-80 transition"
                   onClick={() => {
-                    setGalleryIndex(3);
+                    setGalleryIndex(4);
                     setGalleryOpen(true);
                   }}
                 >
@@ -246,7 +251,7 @@ export default function TicketsystemPage() {
                 <div 
                   className="mb-3 aspect-video overflow-hidden rounded bg-black/60 cursor-pointer hover:opacity-80 transition"
                   onClick={() => {
-                    setGalleryIndex(4);
+                    setGalleryIndex(5);
                     setGalleryOpen(true);
                   }}
                 >
@@ -255,23 +260,7 @@ export default function TicketsystemPage() {
                   </div>
                 </div>
                 <p className="text-sm text-white/70">
-                  <strong className="text-white">Ticketbearbeitung:</strong> Antwort-Editor, Anhänge und chronologischer Verlauf
-                </p>
-              </div>
-              <div className="rounded border border-primary/30 bg-black/40 p-4">
-                <div 
-                  className="mb-3 aspect-video overflow-hidden rounded bg-black/60 cursor-pointer hover:opacity-80 transition"
-                  onClick={() => {
-                    setGalleryIndex(5);
-                    setGalleryOpen(true);
-                  }}
-                >
-                  <div className="flex h-full items-center justify-center text-sm text-white/40">
-                    <img src="/assets/ticketsystem/admin_userprofile.png" alt="Benutzerverwaltung für die Admins" />
-                  </div>
-                </div>
-                <p className="text-sm text-white/70">
-                  <strong className="text-white">Benutzerverwaltung:</strong> Träger-Übersicht mit Plan-Status und Limits
+                  <strong className="text-white">Ticketbearbeitung:</strong> Detailseite für die Tickets, wo alle Informationen zu dem Ticket abgerufen werden können. Zudem können hinterlegte Kommentare und Systemnachrichten zu dem Ticket eingesehen werden.
                 </p>
               </div>
               <div className="rounded border border-primary/30 bg-black/40 p-4">
@@ -283,11 +272,27 @@ export default function TicketsystemPage() {
                   }}
                 >
                   <div className="flex h-full items-center justify-center text-sm text-white/40">
+                    <img src="/assets/ticketsystem/admin_userprofile.png" alt="Benutzerverwaltung für die Admins" />
+                  </div>
+                </div>
+                <p className="text-sm text-white/70">
+                  <strong className="text-white">Benutzerverwaltung:</strong> Übersicht zu den ausgewählten Träger. Hier können alle Nutzer der Trägernummer, sowie erstellte Tickets eingesehen werden. Zudem können hier die Limits und der Plan-Status eingesehen und bearbeitet werden.
+                </p>
+              </div>
+              <div className="rounded border border-primary/30 bg-black/40 p-4">
+                <div 
+                  className="mb-3 aspect-video overflow-hidden rounded bg-black/60 cursor-pointer hover:opacity-80 transition"
+                  onClick={() => {
+                    setGalleryIndex(7);
+                    setGalleryOpen(true);
+                  }}
+                >
+                  <div className="flex h-full items-center justify-center text-sm text-white/40">
                     <img src="/assets/ticketsystem/admin_tracking.png" alt="Analytics-Übersicht für die Admins" />
                   </div>
                 </div>
                 <p className="text-sm text-white/70">
-                  <strong className="text-white">Analytics:</strong> Kreisdiagramme und Zeitraum-Filter für Auswertungen
+                  <strong className="text-white">Analytics:</strong> Kurze Analytics-Seite, welche eine Übersicht über Tickets in dem angegebenen Zeitraum liefert.
                 </p>
               </div>
             </div>
@@ -320,7 +325,7 @@ export default function TicketsystemPage() {
               <div className="rounded border border-primary/30 bg-black/40 p-6">
                 <h4 className="mb-3 !text-base text-white">Premium-Upgrade-Flow</h4>
                 <p className="mb-3 text-sm leading-relaxed text-white/75">
-                  Drei Abonnementstufen (Basic 50€, Pro 95€, Business 125€) mit transparenter Kontingent-Übersicht.
+                  Drei Abonnementstufen mit transparenter Kontingent-Übersicht.
                   Upgrade-Request löst automatisch Support-Ticket aus.
                 </p>
                 <ul className="space-y-1 text-sm text-white/60">
@@ -350,7 +355,7 @@ export default function TicketsystemPage() {
                 <ul className="space-y-1 text-sm text-white/60">
                   <li>→ Echtzeit-Badge mit verfügbaren Tickets</li>
                   <li>→ Separate Limits pro Priorität (Normal/Hoch/Dringend)</li>
-                  <li>→ Fallback auf telefonischen Support</li>
+                  <li>→ Bei aufgebrauchten Limits kann der Support, zu den angegebenen Öffnungszeiten, kontaktiert werden</li>
                 </ul>
               </div>
             </div>
@@ -391,9 +396,9 @@ export default function TicketsystemPage() {
                   Reporting. Antworten werden per Twig-Template als responsive E-Mails versendet.
                 </p>
                 <ul className="space-y-1 text-sm text-white/60">
-                  <li>→ Trennung: öffentliche Antworten vs. interne Kommentare</li>
+                  <li>→ Trennung: Nutzerkommentare, Adminkommentare und Adminantworten</li>
                   <li>→ Automatischer Statuswechsel bei Antwort (→ "Warte auf Antwort")</li>
-                  <li>→ Anhänge nachträglich hinzufügen mit Systemkommentar</li>
+                  <li>→ Systemnachrichten protokollieren den Verlauf des Tickets</li>
                 </ul>
               </div>
               <div className="rounded border border-primary/30 bg-black/40 p-6">
@@ -439,7 +444,7 @@ export default function TicketsystemPage() {
               </p>
             </div>
             <div>
-              <h3 className="mb-2 !text-base text-primary">Wirtschaftlichkeit & ROI</h3>
+              <h3 className="mb-2 !text-base text-primary">Wirtschaftlichkeit</h3>
               <p className="leading-relaxed text-sm">
                 <strong>Einmalige Entwicklungskosten:</strong> 3.200€ (80h Projektzeit im Rahmen der IHK-Abschlussarbeit)<br />
                 <strong>Eingesparte Lizenzkosten:</strong> 2.500-3.300€ jährlich (Vergleich: Zendesk, Deskpro)<br />
