@@ -58,12 +58,12 @@ export default function Projekte() {
                             <div className="hidden xl:block absolute inset-x-0 bottom-0 bg-black/80 p-4 transition-transform duration-300 translate-y-[calc(100%-4.5rem)] group-hover:translate-y-0">
                                 <h3 className="!text-xxl font-bold text-primary mb-3">{project.title}</h3>
                                 <p className="text-sm text-white/80 mb-3">{project.description}</p>
-                                <div className="flex items-center justify-between gap-2 flex-wrap">
-                                    <div className="flex gap-2 flex-wrap">
-                                        {project.tags.map((tag) => (
-                                            <span key={tag} className="text-xs border border-primary text-primary px-2 py-0.5">{tag}</span>
-                                        ))}
-                                    </div>
+                                <div className="flex gap-2 flex-wrap mb-3">
+                                    {project.tags.map((tag) => (
+                                        <span key={tag} className="text-xs border border-primary text-primary px-2 py-0.5">{tag}</span>
+                                    ))}
+                                </div>
+                                <div>
                                     {project.internal ? (
                                         <Link href={project.href} className="text-base text-primary underline underline-offset-2 hover:opacity-70">Mehr erfahren →</Link>
                                     ) : (
@@ -76,12 +76,12 @@ export default function Projekte() {
                         <div className="xl:hidden bg-black/80 p-4">
                             <h3 className="!text-xxl font-bold text-primary mb-3">{project.title}</h3>
                             <p className="text-sm text-white/80 mb-3">{project.description}</p>
-                            <div className="flex items-center justify-between gap-2 flex-wrap">
-                                <div className="flex gap-2 flex-wrap">
-                                    {project.tags.map((tag) => (
-                                        <span key={tag} className="text-xs border border-primary text-primary px-2 py-0.5">{tag}</span>
-                                    ))}
-                                </div>
+                            <div className="flex gap-2 flex-wrap mb-3">
+                                {project.tags.map((tag) => (
+                                    <span key={tag} className="text-xs border border-primary text-primary px-2 py-0.5">{tag}</span>
+                                ))}
+                            </div>
+                            <div>
                                 {project.internal ? (
                                     <Link href={project.href} className="text-base text-primary underline underline-offset-2 hover:opacity-70">Mehr erfahren →</Link>
                                 ) : (
