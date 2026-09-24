@@ -217,7 +217,7 @@ export default function TicketsystemPage() {
                   }}
                 >
                   <div className="flex h-full items-center justify-center text-sm text-white/40">
-                    <img src="/assets/ticketsystem/nutzer_ticketform.png" alt="Ticketdetails für die Nutzer" />
+                    <img src="/assets/ticketsystem/nutzer_ticket.png" alt="Ticketdetails für die Nutzer" />
                   </div>
                 </div>
                 <p className="text-sm text-white/70">

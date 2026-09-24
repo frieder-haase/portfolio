@@ -1,18 +1,30 @@
 "use client";
 import Link from "next/link";
-import { useIntro } from "@/context/IntroContext";
+import ImageSlideshow from "./ImageSlideshow"; 
 
-const projects = [
+interface Project {
+    title: string;
+    image?: string;
+    images?: string[];
+    description: string;
+    tags: string[];
+    href: string;
+    internal: boolean;
+    featured?: boolean;
+}
+
+const projects: Project[] = [
     {
         title: "Ticketsystem für maßnahme-direkt.de",
-        image: "/assets/projekte/Ticketsystem.png",
-        description: "Full-Stack Umsetzung eines internen Ticketsystems zur Verwaltung von Support-Anfragen im Rahmen meiner IHK Abschlussarbeit.",
-        tags: ["React", "Symfony", "Rest-API", "Doctrine", "TypeScript", "PHP"],
+        images: ["/assets/projekte/Ticketsystem.png", "/assets/ticketsystem/admin_dashboard.png", "/assets/ticketsystem/admin_ticketform.png", "/assets/ticketsystem/admin_tracking.png"],
+        description: "Full-Stack Ticketsystem für den EMAW-Provider maßnahme-direkt.de. Mit getrennten React- und Symfony-Frontends, automatisiertem Status-Workflow (inkl. 48h-Auto-Close) und KPI-Dashboard für das Support-Team. Derzeit im Live-Betrieb und wird aktiv von Bildungsträgern genutzt.",
+        tags: ["Full-Stack", "React", "TypeScript", "Symfony", "REST-API", "Doctrine"],
         href: "/projekte/ticketsystem",
         internal: true,
+        featured: true,
     },
     {
-        title: "Website für tankschutz-halle.de",
+        title: "tankschutz-halle.de",
         image: "/assets/projekte/TankschutzHalle.png",
         description: "Umsetzung einer Webseite nach vorgegebenem Design für einen Dienstleister im Bereich Tankreinigung.",
         tags: ["WordPress", "Bootstrap", "PHP"],
@@ -20,7 +32,7 @@ const projects = [
         internal: false,
     },
     {
-        title: "Website für jens-iwan.de",
+        title: "jens-iwan.de",
         image: "/assets/projekte/JensIwan.png",
         description: "Umsetzung einer Webseite nach vorgegebenem Design für einen Baugutachter.",
         tags: ["WordPress", "Bootstrap", "PHP"],
@@ -28,7 +40,7 @@ const projects = [
         internal: false,
     },
     {
-        title: "Suche für AfricanExplorer.de",
+        title: "AfricanExplorer.de",
         image: "/assets/projekte/AfricanExplorer.png",
         description: "Umsetzung einer Suchfunktion für die bestehende Webseite eines Reiseveranstalters, welche die WordPress Unterseiten nach den angegebenen Suchkriterien filtert.",
         tags: ["WordPress", "Bootstrap", "PHP"],
@@ -38,19 +50,60 @@ const projects = [
 ];
 
 export default function Projekte() {
-    const { introDone } = useIntro();
+    const featured = projects.find((p) => p.featured);
+    const rest = projects.filter((p) => !p.featured);
 
     return (
         <section className="container mx-auto my-8 lg:my-16 px-4 lg:px-0">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                {projects.map((project, index) => (
+            {/* Abschlussprojekt */}
+            <h2 className="text-2xl font-bold my-6">IHK-Abschlussprojekt</h2>
+            {featured && (
+                <div
+                    className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10"
+                >
+                    <div className="overflow-hidden rounded">
+                        <ImageSlideshow images={featured.images ?? []} alt={featured.title} />
+                    </div>
+                    <div className="bg-black/80 p-6 flex flex-col justify-center">
+                        <h3 className="!text-xxl font-bold text-primary mb-3">{featured.title}</h3>
+
+                        <p className="text-sm text-white/80 mb-4">{featured.description}</p>
+                        <a
+                            href="https://www.arbeitsagentur.de/institutionen/bildungstraeger/elektronische-massnahmeabwicklung"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-xs text-primary/70 underline underline-offset-2 hover:opacity-70 w-fit mb-3"
+                        >
+                            Was ist EMAW?
+                        </a>
+                        <ul className="text-sm text-white/80 mb-4 space-y-2">
+                            <li>→ Getrennte Frontends: React (Admin-Frontend) & Symfony (Nutzerfrontend/Backend)</li>
+                            <li>→ Datenaustausch zwischen React-Frontend und Symfony-Backend über REST-API</li>
+                            <li>→ Automatisierter Status-Workflow inkl. 48h-Auto-Close mit Reopen-Option</li>
+                            <li>→ Automatische E-Mail-Benachrichtigungen bei Ticket-Erstellung & Antworten</li>
+                            <li>→ Umfangreiche Filter- & Suchfunktionen, KPI-Cards und Utilities für das Support-Team</li>
+                            <li>→ Automatisch generierte Systemkommentare für die Nachvollziehbarkeit der Anliegen</li>
+                        </ul>
+
+                        <div className="flex gap-2 flex-wrap mb-4">
+                            {featured.tags.map((tag) => (
+                                <span key={tag} className="text-xs border border-primary text-primary px-2 py-0.5">{tag}</span>
+                            ))}
+                        </div>
+
+                        <Link href={featured.href} className="text-base text-primary underline underline-offset-2 hover:opacity-70 w-fit">
+                            Mehr erfahren →
+                        </Link>
+                    </div>
+                </div>
+            )}
+            <h2 className="text-2xl font-bold my-6">Andere Projekte</h2>
+            {/* Andere Portfolio-Projekte */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                {rest.map((project, index) => (
                     <div
                         key={project.title + index}
                         className="flex flex-col gap-3 transition-opacity duration-3000"
-                        style={{
-                            opacity: introDone ? 1 : 0,
-                            transitionDelay: introDone ? `${Math.floor(index / 2) * 400}ms` : "0ms",
-                        }}
                     >
                         <div className="relative overflow-hidden group rounded">
                             <img src={project.image} alt={project.title} className="bild w-full" />
@@ -72,7 +125,7 @@ export default function Projekte() {
                                 </div>
                             </div>
                         </div>
-                        {/* Text darunter für mobile/tablet */}
+                        {/* Text für mobile/tablet */}
                         <div className="xl:hidden bg-black/80 p-4">
                             <h3 className="!text-xxl font-bold text-primary mb-3">{project.title}</h3>
                             <p className="text-sm text-white/80 mb-3">{project.description}</p>

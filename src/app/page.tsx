@@ -7,8 +7,8 @@ export default function Home() {
   return (
       <main>
         <Intro />
-        <Projekte />
         <AboutMe />
+        <Projekte />
       </main>
   );
 }
