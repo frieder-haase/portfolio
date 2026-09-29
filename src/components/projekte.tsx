@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import ImageSlideshow from "./ImageSlideshow"; 
 
@@ -52,10 +53,33 @@ const projects: Project[] = [
 export default function Projekte() {
     const featured = projects.find((p) => p.featured);
     const rest = projects.filter((p) => !p.featured);
+    const [visible, setVisible] = useState(true);
+    const sectionRef = useRef<HTMLElement>(null);
+
+    useEffect(() => {
+    const el = sectionRef.current;
+        if (!el) return;
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setVisible(true);
+                    observer.disconnect();
+                }
+            },
+            { threshold: 0.2 }
+        );
+        observer.observe(el);
+        return () => observer.disconnect();
+    }, []);
 
     return (
-        <section className="container mx-auto my-8 lg:my-16 px-4 lg:px-0">
-            {/* Abschlussprojekt */}
+        <section
+            ref={sectionRef}
+            id="projekte"
+            className={`container min-h-screen scroll-mt-36 snap-start flex flex-col justify-start mx-auto px-4 lg:px-0 transition-opacity duration-1000 ease-out ${
+                visible ? "opacity-100" : "opacity-0"
+            }`}
+        >
             <h2 className="text-2xl font-bold my-6">IHK-Abschlussprojekt</h2>
             {featured && (
                 <div

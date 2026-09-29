@@ -3,7 +3,6 @@ import { Space_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header"
 import Footer from "@/components/footer"
-import { IntroProvider } from "@/context/IntroContext"
 
 const spaceMono = Space_Mono({
   weight: ["400", "700"],
@@ -26,11 +25,9 @@ export default function RootLayout({
   return (
     <html lang="de">
       <body className={spaceMono.variable}>
-        <IntroProvider>
           <Header />
-          <main className="min-h-screen">{children}</main>
+          <main>{children}</main>
           <Footer />
-        </IntroProvider>
       </body>
     </html>
   );
