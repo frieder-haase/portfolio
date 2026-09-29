@@ -75,6 +75,13 @@ export default function AboutMe() {
         return () => observer.disconnect();
     }, []);
 
+    const navigateToSection = (sectionId: string) => {
+        document.getElementById(sectionId)?.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+        });
+    };
+
     return (
         <section
             ref={sectionRef}
@@ -121,6 +128,12 @@ export default function AboutMe() {
             <div className="flex flex-col items-center gap-y-10 mt-12">
                 <TechRow tools={devTools} categoryLabel="Entwicklung" />
                 <TechRow tools={designTools} categoryLabel="Design & 3D" />
+            </div>
+
+            <div className="flex justify-center mt-14">
+                <button type="button" onClick={() => navigateToSection("projekte")} className="inline-flex items-center gap-2 rounded border border-primary px-6 py-3 text-primary transition hover:bg-primary hover:text-black">
+                    Meine Projekte ansehen ↓
+                </button>
             </div>
 
         </section>

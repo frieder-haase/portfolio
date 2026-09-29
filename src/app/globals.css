@@ -52,6 +52,11 @@ html {
   scroll-snap-stop: always;
 }
 
+.section-snap-start {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
 header {
   background: var(--color-black);
   color: var(--color-primary);

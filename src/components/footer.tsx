@@ -8,7 +8,7 @@ export default function Footer() {
                 {/* Social Icons */}
                 <div className="flex gap-4">
                     <a
-                        href="https://github.com/DEIN-USERNAME"
+                        href="https://github.com/frieder-haase"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-primary/70 hover:text-primary hover:opacity-80 transition-colors"
@@ -19,7 +19,7 @@ export default function Footer() {
                         </svg>
                     </a>
                     <a
-                        href="https://www.linkedin.com/in/DEIN-USERNAME"
+                        href="https://www.linkedin.com/in/frieder-haase-20b23814b"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-primary/70 hover:text-primary hover:opacity-80 transition-colors"

@@ -38,7 +38,7 @@ export default function Header() {
         </h1>
         <nav aria-label="Hauptnavigation" className="flex gap-6">
           <button type="button" onClick={() => navigateToSection("aboutme")} className="cursor-pointer text-white/80 transition-colors hover:text-primary">
-            Über mich
+            Home
           </button>
           <button type="button" onClick={() => navigateToSection("projekte")} className="cursor-pointer text-white/80 transition-colors hover:text-primary">
             Projekte

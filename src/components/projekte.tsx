@@ -76,7 +76,7 @@ export default function Projekte() {
         <section
             ref={sectionRef}
             id="projekte"
-            className={`container min-h-screen scroll-mt-36 snap-start flex flex-col justify-start mx-auto px-4 lg:px-0 transition-opacity duration-1000 ease-out ${
+            className={`container min-h-screen section-snap-start flex flex-col justify-start mx-auto px-4 pt-36 lg:px-0 transition-opacity duration-1000 ease-out ${
                 visible ? "opacity-100" : "opacity-0"
             }`}
         >
@@ -115,7 +115,7 @@ export default function Projekte() {
                             ))}
                         </div>
 
-                        <Link href={featured.href} className="text-base text-primary underline underline-offset-2 hover:opacity-70 w-fit">
+                        <Link href={featured.href} className="inline-flex items-center gap-2 rounded border border-primary px-6 py-3 text-primary transition hover:bg-primary hover:text-black w-fit">
                             Mehr erfahren →
                         </Link>
                     </div>
