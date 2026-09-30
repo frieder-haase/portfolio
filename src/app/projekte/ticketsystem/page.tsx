@@ -78,7 +78,7 @@ export default function TicketsystemPage() {
   }, []);
   return (
     <main className="container mx-auto px-4 py-12">
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-6xl pt-4 pb-16 lg:py-16">
         {/* Header */}
         <div 
           className="mb-12 transition-opacity duration-500"

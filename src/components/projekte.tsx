@@ -76,19 +76,21 @@ export default function Projekte() {
         <section
             ref={sectionRef}
             id="projekte"
-            className={`container min-h-screen section-snap-start flex flex-col justify-start mx-auto px-4 pt-36 lg:px-0 transition-opacity duration-1000 ease-out ${
+            className={`container min-h-screen section-snap-start flex flex-col justify-start mx-auto px-6 lg:px-0 lg:pt-32 lg:px-0 transition-opacity duration-1000 ease-out ${
                 visible ? "opacity-100" : "opacity-0"
             }`}
         >
-            <h2 className="text-2xl font-bold my-6">IHK-Abschlussprojekt</h2>
+
+            <h2 className="text-2xl text-left font-bold pb-8 pt-12 md:pt-20 lg:pt-16">Projekte</h2>
+
             {featured && (
                 <div
-                    className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10"
+                    className="grid grid-cols-1 lg:grid-cols-2 gap-6"
                 >
-                    <div className="overflow-hidden rounded">
+                    <div className="aspect-video overflow-hidden rounded lg:aspect-auto">
                         <ImageSlideshow images={featured.images ?? []} alt={featured.title} />
                     </div>
-                    <div className="bg-black/80 p-6 flex flex-col justify-center">
+                    <div className="bg-black/80 lg:p-6 flex flex-col justify-center">
                         <h3 className="!text-xxl font-bold text-primary mb-3">{featured.title}</h3>
 
                         <p className="text-sm text-white/80 mb-4">{featured.description}</p>
@@ -121,7 +123,10 @@ export default function Projekte() {
                     </div>
                 </div>
             )}
-            <h2 className="text-2xl font-bold my-6">Andere Projekte</h2>
+
+            {/* Linie */}
+            <hr className="my-6 w-full border-transparent lg:border-primary" />
+
             {/* Andere Portfolio-Projekte */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 {rest.map((project, index) => (
@@ -150,7 +155,7 @@ export default function Projekte() {
                             </div>
                         </div>
                         {/* Text für mobile/tablet */}
-                        <div className="xl:hidden bg-black/80 p-4">
+                        <div className="xl:hidden bg-black/80 lg:p-4">
                             <h3 className="!text-xxl font-bold text-primary mb-3">{project.title}</h3>
                             <p className="text-sm text-white/80 mb-3">{project.description}</p>
                             <div className="flex gap-2 flex-wrap mb-3">

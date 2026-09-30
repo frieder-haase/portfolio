@@ -2,7 +2,7 @@ export default function Contact() {
     return (
         <section
             id="kontakt"
-            className="container mx-auto flex min-h-screen flex-col items-center justify-center section-snap section-snap-start px-4 pt-36 pb-24 text-center lg:px-0"
+            className="container mx-auto flex min-h-screen flex-col items-center justify-center section-snap section-snap-start px-4 lg:pt-36 lg:pb-24 text-center lg:px-0"
         >
             <h2 className="text-2xl lg:text-3xl font-bold text-primary">
                 Interesse an einer Zusammenarbeit?

@@ -6,8 +6,8 @@ import Contact from "@/components/contact";
 export default function Home() {
   return (
       <main>
-        <AboutMe />
         <Projekte />
+        <AboutMe />
         <Contact />
       </main>
   );

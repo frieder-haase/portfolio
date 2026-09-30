@@ -1,5 +1,4 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
 import { TypeAnimation } from "react-type-animation";
 
 interface TechLogo {
@@ -28,7 +27,6 @@ const designTools: TechLogo[] = [
     { src: "/assets/logos/indesign.svg", label: "InDesign", objectFit: "object-contain" },
     { src: "/assets/logos/blender.svg", label: "Blender", objectFit: "object-contain" },
     { src: "/assets/logos/zbrush.svg", label: "ZBrush", objectFit: "object-contain" },
-    { src: "/assets/logos/maya.svg", label: "Autodesk Maya", objectFit: "object-contain" },
     { src: "/assets/logos/marvelousdesigner.png", label: "Marvelous Designer", objectFit: "object-contain" },
     { src: "/assets/logos/substance.svg", label: "Substance Painter", objectFit: "object-contain" },
     { src: "/assets/logos/unreal.svg", label: "Unreal Engine", objectFit: "object-contain" },
@@ -38,7 +36,7 @@ function TechRow({ tools, categoryLabel }: { tools: TechLogo[]; categoryLabel: s
     return (
         <div className="flex flex-col items-center gap-3">
             <span className="text-xs text-white/40 uppercase tracking-wide">{categoryLabel}</span>
-            <div className="flex flex-wrap justify-center gap-x-8 gap-y-6">
+            <div className="flex flex-wrap justify-center gap-x-2 gap-y-4 lg:gap-x-8 lg:gap-y-6">
                 {tools.map((logo) => (
                     <div key={logo.label} className="flex flex-col items-center gap-1 w-20 lg:w-24">
                         <img
@@ -47,7 +45,7 @@ function TechRow({ tools, categoryLabel }: { tools: TechLogo[]; categoryLabel: s
                             className={`w-16 h-16 lg:w-20 lg:h-20 p-1 ${logo.objectFit} 
                             `}
                         />
-                        <span className="untertitel text-center">{logo.label}</span>
+                        <span className="text-sm lg:text-base mt-4 lg:mt-4 text-white/80 text-center">{logo.label}</span>
                     </div>
                 ))}
             </div>
@@ -56,25 +54,6 @@ function TechRow({ tools, categoryLabel }: { tools: TechLogo[]; categoryLabel: s
 }
 
 export default function AboutMe() {
-    const sectionRef = useRef<HTMLElement>(null);
-    const [visible, setVisible] = useState(false);
-
-    useEffect(() => {
-        const el = sectionRef.current;
-        if (!el) return;
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    setVisible(true);
-                    observer.disconnect();
-                }
-            },
-            { threshold: 0.2 }
-        );
-        observer.observe(el);
-        return () => observer.disconnect();
-    }, []);
-
     const navigateToSection = (sectionId: string) => {
         document.getElementById(sectionId)?.scrollIntoView({
             behavior: "smooth",
@@ -84,56 +63,49 @@ export default function AboutMe() {
 
     return (
         <section
-            ref={sectionRef}
             id="aboutme"
-            className={`container min-h-[calc(100vh-4rem)] section-snap flex flex-col justify-center mx-auto px-4 lg:px-0 transition-opacity duration-1000 ease-out ${
-                visible ? "opacity-100" : "opacity-0"
-            }`}
+            className="container min-h-[calc(100vh-4rem)] section-snap flex flex-col justify-center mx-auto px-4 lg:px-0"
         >
             {/* Über Mich Sektion */}
-            <div className="flex flex-col lg:flex-row items-center gap-8">
-                <p className="!text-2xl lg:!text-4xl font-bold text-primary whitespace-pre-line leading-normal h-28 text-left">
-                    <TypeAnimation
-                        sequence={[
-                            "Hallo, ich bin Fred.",
-                            300,
-                            "Hallo, ich bin Fred. Anwendungs­entwickler aus Leipzig.",
-                        ]}
-                        speed={75}
-                        cursor={false}
-                        repeat={0}
-                    />
-                </p>
-            </div>
-
-            <div className="flex flex-col lg:flex-row items-center gap-8">
-                <div className="flex flex-col items-center gap-3 shrink-0">
+            <div className="flex flex-col items-center gap-6 lg:flex-row lg:items-start lg:gap-8 px-0 pt-24 lg:py-8">
+                <div className="h-48 w-48 shrink-0 overflow-hidden rounded-full sm:h-48 sm:w-48 lg:h-68 lg:w-68 mb-4 lg:mb-0">
                     <img
                         src="/assets/me.jpg"
                         alt="Bild von Frieder Haase"
-                        className="w-40 h-40 lg:w-56 lg:h-56 rounded-full object-cover object-top grayscale"
+                        className="h-full w-full scale-125 object-cover object-top grayscale"
                     />
                 </div>
-
-                <p className="text-white/80 leading-relaxed w-full">
-                    Als ursprünglich gelernter Game Designer, 3D Artist und auch Grafikdesigner bringe ich sowohl Verständnis und Passion für die technische als auch die kreative Seite der Softwareentwicklung mit.
-                    <br className="mb-4"></br>
-                    Nichts ist für mich frustrierender als eine schlechte UI/UX, das gilt sowohl für Spiele, als auch für jegliche andere Software. Daher ist es mir besonders wichtig, bei meinen Projekten auf eine intuitive und ansprechende Gestaltung zu achten.
-                    <br className="mb-4"></br>
-                    Durch meine diverse Erfahrung kann ich mich in verschiedenen Bereichen der Softwareentwicklung einbringen, weshalb ich letztendlich auch das Ziel habe mich als Full-Stack Entwickler zu etablieren.
-                </p>
+                <div className="min-w-0 w-full flex-1">
+                    <p className="h2 min-h-20 !text-2xl lg:!text-4xl pb-4 font-bold text-primary whitespace-pre-line leading-normal text-left">
+                        <TypeAnimation
+                            sequence={[
+                                "Hey, ich bin Fred.",
+                                300,
+                                "Hey, ich bin Fred. Anwendungs­entwickler aus Leipzig.",
+                            ]}
+                            speed={75}
+                            cursor={false}
+                            repeat={0}
+                        />
+                    </p>
+                    <div className="space-y-4 text-white/80 leading-relaxed">
+                        <p>
+                            Als ursprünglich gelernter Game Designer, 3D Artist und auch Grafikdesigner bringe ich sowohl Verständnis und Passion für die technische als auch die kreative Seite der Softwareentwicklung mit.
+                        </p>
+                        <p>
+                            Nichts ist für mich frustrierender als eine schlechte UI/UX, das gilt sowohl für Spiele, als auch für jegliche andere Software. Daher ist es mir besonders wichtig, bei meinen Projekten auf eine intuitive und ansprechende Gestaltung zu achten.
+                        </p>
+                        <p>
+                            Durch meine diverse Erfahrung kann ich mich in verschiedenen Bereichen der Softwareentwicklung einbringen, weshalb ich letztendlich auch das Ziel habe mich als Full-Stack Entwickler zu etablieren.
+                        </p>
+                    </div>
+                </div>
             </div>
 
-            {/* Techstack nach Kategorie */}
+            {/* Techstack */}
             <div className="flex flex-col items-center gap-y-10 mt-12">
                 <TechRow tools={devTools} categoryLabel="Entwicklung" />
                 <TechRow tools={designTools} categoryLabel="Design & 3D" />
-            </div>
-
-            <div className="flex justify-center mt-14">
-                <button type="button" onClick={() => navigateToSection("projekte")} className="inline-flex items-center gap-2 rounded border border-primary px-6 py-3 text-primary transition hover:bg-primary hover:text-black">
-                    Meine Projekte ansehen ↓
-                </button>
             </div>
 
         </section>
