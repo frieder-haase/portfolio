@@ -4,7 +4,7 @@ import { TypeAnimation } from "react-type-animation";
 
 // Texte der Tipp-Animation
 const GREETING = "Hey, ich bin Fred.";
-const ROLES = ["Game Artist.", "Grafikdesigner.", "Anwendungsentwickler."];
+const ROLES = ["Gamedesigner", "3D Artist.", "Grafikdesigner.", "Anwendungsentwickler."];
 const PAUSE_MS = 1200;
 
 const LONGEST_ROLE = ROLES.reduce((a, b) => (b.length > a.length ? b : a));
@@ -55,7 +55,7 @@ export default function Hero() {
 
             {/* Unterzeile */}
             <p className="reveal mb-10 max-w-2xl text-white/80 leading-relaxed" style={{ "--reveal-delay": "200ms" } as React.CSSProperties}>
-                Ich habe gelernt, wie gute Gestaltung aussieht. Jetzt baue ich die Software dahinter.
+                Erst Design, dann Code. Irgendwie hat mich die Frage, wie es dahinter funktioniert, nicht losgelassen.
             </p>
 
             {/* Buttons */}
