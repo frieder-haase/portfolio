@@ -9,6 +9,12 @@ const PAUSE_MS = 1200;
 
 const LONGEST_ROLE = ROLES.reduce((a, b) => (b.length > a.length ? b : a));
 
+// Zu einem Abschnitt scrollen, ohne die Adresse zu ändern
+function scrollToSection(e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) {
+    e.preventDefault();
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
 export default function Hero() {
     const [typingDone, setTypingDone] = useState(false);
 
@@ -62,12 +68,14 @@ export default function Hero() {
             <div className="reveal flex flex-wrap gap-4" style={{ "--reveal-delay": "300ms" } as React.CSSProperties}>
                 <a
                     href="#projekte"
+                    onClick={(e) => scrollToSection(e, "projekte")}
                     className="inline-flex items-center gap-2 rounded border border-primary bg-primary px-6 py-3 font-bold text-black transition hover:bg-transparent hover:text-primary"
                 >
                     Projekte ansehen ↓
                 </a>
                 <a
                     href="#kontakt"
+                    onClick={(e) => scrollToSection(e, "kontakt")}
                     className="inline-flex items-center gap-2 rounded border border-primary px-6 py-3 text-primary transition hover:bg-primary hover:text-black"
                 >
                     Kontakt aufnehmen

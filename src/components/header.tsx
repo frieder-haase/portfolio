@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
@@ -25,12 +25,26 @@ export default function Header() {
         return () => window.removeEventListener("keydown", onKeyDown);
     }, [menuOpen]);
 
-    // Zu einem Abschnitt scrollen, von Unterseiten zurück zur Startseite
+    // Ziel-Abschnitt, wenn von einer Unterseite zur Startseite gewechselt wird
+    const pendingSection = useRef<string | null>(null);
+
+    // Nach dem Wechsel zur Startseite zum Ziel-Abschnitt scrollen
+    useEffect(() => {
+        if (pathname !== "/" || !pendingSection.current) return;
+        const sectionId = pendingSection.current;
+        pendingSection.current = null;
+        requestAnimationFrame(() => {
+            document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+    }, [pathname]);
+
+    // Zu einem Abschnitt scrollen, ohne die Adresse zu ändern
     const navigateToSection = (sectionId: string) => {
         setMenuOpen(false);
 
         if (pathname !== "/") {
-            router.push(`/#${sectionId}`);
+            pendingSection.current = sectionId;
+            router.push("/", { scroll: false });
             return;
         }
 
