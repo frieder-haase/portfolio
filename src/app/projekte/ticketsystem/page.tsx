@@ -1,105 +1,157 @@
-"use client";
-
-import Image from "next/image";
+import type { Metadata } from "next";
 import Link from "next/link";
-import { useState, useEffect } from "react";
-import ImageGallery from "@/components/ImageGallery";
+import ScreenshotGallery, { GalleryOpenButton, type Screenshot } from "@/components/ScreenshotGallery";
 
-interface GalleryImage {
-  src: string;
-  title: string;
-  description: string;
-}
+// Seitentitel und Linkvorschau
+export const metadata: Metadata = {
+  title: "Ticketsystem für Maßnahme-Direkt",
+  description:
+    "IHK-Abschlussprojekt: Full-Stack Ticketsystem mit React-Admin-Frontend und Symfony-Backend, live im Einsatz bei maßnahme-direkt.de.",
+  alternates: { canonical: "/projekte/ticketsystem" },
+  openGraph: {
+    url: "/projekte/ticketsystem",
+    images: [{ url: "/assets/projekte/Ticketsystem.png", alt: "Ticketsystem für maßnahme-direkt.de" }],
+  },
+};
 
-const GALLERY_IMAGES: GalleryImage[] = [
+// Screenshots für die Galerie
+const SCREENSHOTS: Screenshot[] = [
   {
     src: "/assets/ticketsystem/nutzer_login.png",
+    area: "nutzer",
     title: "Login - Nutzer",
     description: "Authentifizierung mit Trägernummer, Username und Passwort für das Kundenportal.",
+    label: "Login",
+    caption: "Nutzer können sich mit den vorhandenen Logindaten von maßnahme-direkt.de anmelden.",
+    alt: "Loginformular für die Nutzer",
   },
   {
     src: "/assets/ticketsystem/nutzer_dashboard.png",
+    area: "nutzer",
     title: "Dashboard - Nutzer",
     description: "Übersicht mit Filteroptionen, verfügbaren Limits und aktiven Tickets für Bildungsträger.",
+    label: "Dashboard",
+    caption: "Übersicht über die erstellten Tickets mit Filteroptionen und verfügbaren Limits",
+    alt: "Dashboard für die Nutzer",
   },
   {
     src: "/assets/ticketsystem/nutzer_ticketform.png",
+    area: "nutzer",
     title: "Ticketerstellung - Nutzer",
     description: "Intuitive Eingabemaske mit Echtzeit-Validierung, Prioritätsauswahl und Datei-Upload bis 8 MB.",
+    label: "Ticketerstellung",
+    caption: "Erstellformular für die Nutzer mit Prioritätsauswahl und Datei-Upload bis 8 MB",
+    alt: "Ticketerstellungs-Formular für die Nutzer",
   },
   {
     src: "/assets/ticketsystem/nutzer_ticket.png",
+    area: "nutzer",
     title: "Ticketdetails - Nutzer",
     description: "Detailansicht eines Tickets mit vollständiger Kommunikationshistorie und Möglichkeit zur Antwort.",
+    label: "Ticketdetails",
+    caption: "Nutzer können ihre erstellten Tickets einsehen und Updates zu dem Anliegen hinzufügen und einsehen.",
+    alt: "Ticketdetails für die Nutzer",
+  },
+  {
+    src: "/assets/ticketsystem/nutzer_premium.png",
+    area: "nutzer",
+    title: "Premium-Upgrade - Nutzer",
+    description: "Drei Abonnementstufen mit transparenter Kontingent-Übersicht. Eine Upgrade-Anfrage löst automatisch ein Support-Ticket aus.",
+    label: "Premium-Upgrade",
+    caption: "Übersicht der Abonnementstufen. Eine Upgrade-Anfrage erstellt automatisch ein kostenfreies Support-Ticket.",
+    alt: "Premium-Upgrade-Seite für die Nutzer",
   },
   {
     src: "/assets/ticketsystem/admin_dashboard.png",
+    area: "admin",
     title: "Dashboard - Admin",
     description: "KPI-Cards, Suchfelder und Ticketliste mit Uhr-Icons für schnellen Überblick über Bearbeitungszeiten.",
+    label: "Dashboard",
+    caption: "KPI-Cards, Suchfelder und Ticketliste mit Uhr-Icons, welche einen schnellen Überblick bieten, wie lange das Ticket bereits offen ist.",
+    alt: "Dashboard für die Admins",
   },
   {
     src: "/assets/ticketsystem/admin_ticketform.png",
+    area: "admin",
     title: "Ticketbearbeitung - Admin",
     description: "Antwort-Editor, Anhänge und chronologischer Verlauf aller Kommunikationen mit dem Kunden.",
+    label: "Ticketbearbeitung",
+    caption: "Detailseite für die Tickets, wo alle Informationen zu dem Ticket abgerufen werden können. Zudem können hinterlegte Kommentare und Systemnachrichten zu dem Ticket eingesehen werden.",
+    alt: "Ticketbearbeitung für die Admins",
   },
   {
     src: "/assets/ticketsystem/admin_userprofile.png",
+    area: "admin",
     title: "Benutzerverwaltung - Admin",
     description: "Träger-Übersicht mit Plan-Status, Limits und Kontingent-Verwaltung für alle Kunden.",
+    label: "Benutzerverwaltung",
+    caption: "Übersicht zu den ausgewählten Träger. Hier können alle Nutzer der Trägernummer, sowie erstellte Tickets eingesehen werden. Zudem können hier die Limits und der Plan-Status eingesehen und bearbeitet werden.",
+    alt: "Benutzerverwaltung für die Admins",
   },
   {
     src: "/assets/ticketsystem/admin_tracking.png",
+    area: "admin",
     title: "Analytics - Admin",
     description: "Kreisdiagramme und Zeitraum-Filter für detaillierte Auswertungen und Statistiken.",
+    label: "Analytics",
+    caption: "Kurze Analytics-Seite, welche eine Übersicht über Tickets in dem angegebenen Zeitraum liefert.",
+    alt: "Analytics-Übersicht für die Admins",
   },
 ];
 
+// Kennzahlen-Kacheln
+const KEY_FACTS = [
+  { value: "Live", label: "im Produktiveinsatz" },
+  { value: "80 h", label: "Projektzeit (IHK)" },
+  { value: "< 1 Jahr", label: "bis zur Amortisation" },
+  { value: "2.500–3.300 €", label: "Lizenzkosten pro Jahr gespart" },
+];
+
 export default function TicketsystemPage() {
-  const [galleryOpen, setGalleryOpen] = useState(false);
-  const [galleryIndex, setGalleryIndex] = useState(0);
-  const [visibleSections, setVisibleSections] = useState<Record<string, boolean>>({});
-
-  useEffect(() => {
-    const delays = {
-      header: 0,
-      challenge: 200,
-      techStack: 400,
-      screenshots: 600,
-      features: 800,
-      result: 1000,
-      button: 1200,
-    };
-
-    Object.entries(delays).forEach(([section, delay]) => {
-      setTimeout(() => {
-        setVisibleSections(prev => ({ ...prev, [section]: true }));
-      }, delay);
-    });
-  }, []);
   return (
-    <main className="container mx-auto px-4 py-12">
+    <main className="container mx-auto px-4 pt-12 pb-24 lg:pt-24">
       <div className="mx-auto max-w-6xl pt-4 pb-16 lg:py-16">
         {/* Header */}
-        <div 
-          className="mb-12 transition-opacity duration-500"
-          style={{ opacity: visibleSections.header ? 1 : 0 }}
-        >
-          <p className="mb-3 text-sm uppercase tracking-[0.2em] text-gray">IHK-Abschlussprojekt</p>
-          <h1 className="mb-3">Ticketsystem für Maßnahme-Direkt</h1>
-          <p className="max-w-3xl text-white/70">
-            Full-Stack Ticketsystem mit getrennten Nutzer- und Admin-Frontends zur effizienten Verwaltung
-            von Support-Anfragen. Von der telefonischen Hotline zum strukturierten digitalen Workflow.
-          </p>
+        <div className="reveal mb-8">
+          <p className="mb-3 text-sm uppercase tracking-[0.2em] text-white/60">IHK-Abschlussprojekt</p>
+          <h1 className="mb-3 !text-3xl md:!text-5xl">Ticketsystem für Maßnahme-Direkt</h1>
+          {/* Einleitung und Button "Screenshots ansehen" */}
+          <div className="grid gap-6 lg:grid-cols-4 lg:items-end lg:gap-4">
+            <p className="max-w-3xl text-white/70 lg:col-span-3">
+              Full-Stack Ticketsystem mit getrennten Nutzer- und Admin-Frontends zur effizienten Verwaltung
+              von Support-Anfragen. Von der telefonischen Hotline zum strukturierten digitalen Workflow.
+            </p>
+            <GalleryOpenButton count={SCREENSHOTS.length} className="w-full" />
+          </div>
         </div>
+
+        {/* Kennzahlen */}
+        <ul className="reveal mb-12 grid grid-cols-2 gap-4 lg:grid-cols-4" style={{ "--reveal-delay": "100ms" } as React.CSSProperties}>
+          {KEY_FACTS.map((fact) => (
+            <li key={fact.label} className="rounded border border-primary/30 bg-black/40 p-4">
+              <span className="block text-xl font-bold text-primary lg:text-2xl">{fact.value}</span>
+              <span className="mt-1 block text-xs text-white/70">{fact.label}</span>
+            </li>
+          ))}
+        </ul>
 
         {/* Projektkontext */}
         <section 
-          className="mb-12 rounded border border-primary/30 bg-black/40 p-8 transition-opacity duration-500"
-          style={{ opacity: visibleSections.challenge ? 1 : 0 }}
+          className="reveal mb-12 rounded border border-primary/30 bg-black/40 p-8"
+          style={{ "--reveal-delay": "200ms" } as React.CSSProperties}
         >
           <h2 className="mb-4">Die Herausforderung</h2>
           <p className="mb-4 leading-relaxed text-white/85">
-            Maßnahme-Direkt ist eine Plattform für die elektronische Maßnahmeabwicklung (EMAW), die Bildungsträgern
+            Maßnahme-Direkt ist eine Plattform für die elektronische Maßnahmeabwicklung (
+            <a
+              href="https://www.arbeitsagentur.de/institutionen/bildungstraeger/elektronische-massnahmeabwicklung"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-bold text-primary underline underline-offset-2 hover:opacity-70"
+            >
+              EMAW<span className="sr-only"> – Erklärung der Bundesagentur für Arbeit, öffnet in neuem Tab</span>
+            </a>
+            ), die Bildungsträgern
             die Verwaltung ihrer Maßnahmen über eine standardisierte Schnittstelle zur Bundesagentur für Arbeit ermöglicht.
           </p>
           <p className="leading-relaxed text-white/85">
@@ -110,10 +162,10 @@ export default function TicketsystemPage() {
           </p>
         </section>
 
-        {/* Technologie Stack */}
+        {/* Technologie-Stack */}
         <section 
-          className="mb-12 transition-opacity duration-500"
-          style={{ opacity: visibleSections.techStack ? 1 : 0 }}
+          className="reveal mb-12"
+          style={{ "--reveal-delay": "300ms" } as React.CSSProperties}
         >
           <h2 className="mb-6">Technologie-Stack</h2>
           <div className="grid gap-6 md:grid-cols-3">
@@ -150,159 +202,15 @@ export default function TicketsystemPage() {
         </section>
 
         {/* Screenshots */}
-        <section 
-          className="mb-12 transition-opacity duration-500"
-          style={{ opacity: visibleSections.screenshots ? 1 : 0 }}
-        >
+        <section className="reveal mb-12">
           <h2 className="mb-6">Einblicke in die Benutzeroberflächen</h2>
-          
-          {/* Nutzer-Frontend Screenshots */}
-          <div className="mb-8">
-            <h3 className="mb-4 !text-lg text-primary">Nutzer-Frontend (Symfony)</h3>
-            <div className="grid gap-6 md:grid-cols-2">
-              <div className="rounded border border-primary/30 bg-black/40 p-4">
-                <div 
-                  className="mb-3 aspect-video overflow-hidden rounded bg-black/60 cursor-pointer hover:opacity-80 transition"
-                  onClick={() => {
-                    setGalleryIndex(0);
-                    setGalleryOpen(true);
-                  }}
-                >
-                  <div className="flex h-full items-center justify-center text-sm text-white/40">
-                    <img src="/assets/ticketsystem/nutzer_login.png" alt="Loginformular für die Nutzer" />
-                  </div>
-                </div>
-                <p className="text-sm text-white/70">
-                  <strong className="text-white">Login:</strong> Nutzer können sich mit den vorhandenen Logindaten von maßnahme-direkt.de anmelden.
-                </p>
-              </div>
-              <div className="rounded border border-primary/30 bg-black/40 p-4">
-                <div 
-                  className="mb-3 aspect-video overflow-hidden rounded bg-black/60 cursor-pointer hover:opacity-80 transition"
-                  onClick={() => {
-                    setGalleryIndex(1);
-                    setGalleryOpen(true);
-                  }}
-                >
-                  <div className="flex h-full items-center justify-center text-sm text-white/40">
-                    <img src="/assets/ticketsystem/nutzer_dashboard.png" alt="Dashboard für die Nutzer" />
-                  </div>
-                </div>
-                <p className="text-sm text-white/70">
-                  <strong className="text-white">Dashboard:</strong> Übersicht über die erstellten Tickets mit Filteroptionen und verfügbaren Limits
-                </p>
-              </div>
-              <div className="rounded border border-primary/30 bg-black/40 p-4">
-                <div 
-                  className="mb-3 aspect-video overflow-hidden rounded bg-black/60 cursor-pointer hover:opacity-80 transition"
-                  onClick={() => {
-                    setGalleryIndex(2);
-                    setGalleryOpen(true);
-                  }}
-                >
-                  <div className="flex h-full items-center justify-center text-sm text-white/40">
-                    <img src="/assets/ticketsystem/nutzer_ticketform.png" alt="Ticketerstellungs-Formular für die Nutzer" />
-                  </div>
-                </div>
-                <p className="text-sm text-white/70">
-                  <strong className="text-white">Ticketerstellung:</strong> Erstellformular für die Nutzer mit Prioritätsauswahl und Datei-Upload bis 8 MB
-                </p>
-              </div>
-              <div className="rounded border border-primary/30 bg-black/40 p-4">
-                <div 
-                  className="mb-3 aspect-video overflow-hidden rounded bg-black/60 cursor-pointer hover:opacity-80 transition"
-                  onClick={() => {
-                    setGalleryIndex(3);
-                    setGalleryOpen(true);
-                  }}
-                >
-                  <div className="flex h-full items-center justify-center text-sm text-white/40">
-                    <img src="/assets/ticketsystem/nutzer_ticket.png" alt="Ticketdetails für die Nutzer" />
-                  </div>
-                </div>
-                <p className="text-sm text-white/70">
-                  <strong className="text-white">Ticketdetails:</strong> Nutzer können ihre erstellten Tickets einsehen und Updates zu dem Anliegen hinzufügen und einsehen.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Admin-Frontend Screenshots */}
-          <div>
-            <h3 className="mb-4 !text-lg text-primary">Admin-Frontend (React)</h3>
-            <div className="grid gap-6 md:grid-cols-2">
-              <div className="rounded border border-primary/30 bg-black/40 p-4">
-                <div 
-                  className="mb-3 aspect-video overflow-hidden rounded bg-black/60 cursor-pointer hover:opacity-80 transition"
-                  onClick={() => {
-                    setGalleryIndex(4);
-                    setGalleryOpen(true);
-                  }}
-                >
-                  <div className="flex h-full items-center justify-center text-sm text-white/40">
-                    <img src="/assets/ticketsystem/admin_dashboard.png" alt="Dashboard für die Admins" />
-                  </div>
-                </div>
-                <p className="text-sm text-white/70">
-                  <strong className="text-white">Dashboard:</strong> KPI-Cards, Suchfelder und Ticketliste mit Uhr-Icons, welche einen schnellen Überblick bieten, wie lange das Ticket bereits offen ist.
-                </p>
-              </div>
-              <div className="rounded border border-primary/30 bg-black/40 p-4">
-                <div 
-                  className="mb-3 aspect-video overflow-hidden rounded bg-black/60 cursor-pointer hover:opacity-80 transition"
-                  onClick={() => {
-                    setGalleryIndex(5);
-                    setGalleryOpen(true);
-                  }}
-                >
-                  <div className="flex h-full items-center justify-center text-sm text-white/40">
-                    <img src="/assets/ticketsystem/admin_ticketform.png" alt="Ticketbearbeitung für die Admins" />
-                  </div>
-                </div>
-                <p className="text-sm text-white/70">
-                  <strong className="text-white">Ticketbearbeitung:</strong> Detailseite für die Tickets, wo alle Informationen zu dem Ticket abgerufen werden können. Zudem können hinterlegte Kommentare und Systemnachrichten zu dem Ticket eingesehen werden.
-                </p>
-              </div>
-              <div className="rounded border border-primary/30 bg-black/40 p-4">
-                <div 
-                  className="mb-3 aspect-video overflow-hidden rounded bg-black/60 cursor-pointer hover:opacity-80 transition"
-                  onClick={() => {
-                    setGalleryIndex(6);
-                    setGalleryOpen(true);
-                  }}
-                >
-                  <div className="flex h-full items-center justify-center text-sm text-white/40">
-                    <img src="/assets/ticketsystem/admin_userprofile.png" alt="Benutzerverwaltung für die Admins" />
-                  </div>
-                </div>
-                <p className="text-sm text-white/70">
-                  <strong className="text-white">Benutzerverwaltung:</strong> Übersicht zu den ausgewählten Träger. Hier können alle Nutzer der Trägernummer, sowie erstellte Tickets eingesehen werden. Zudem können hier die Limits und der Plan-Status eingesehen und bearbeitet werden.
-                </p>
-              </div>
-              <div className="rounded border border-primary/30 bg-black/40 p-4">
-                <div 
-                  className="mb-3 aspect-video overflow-hidden rounded bg-black/60 cursor-pointer hover:opacity-80 transition"
-                  onClick={() => {
-                    setGalleryIndex(7);
-                    setGalleryOpen(true);
-                  }}
-                >
-                  <div className="flex h-full items-center justify-center text-sm text-white/40">
-                    <img src="/assets/ticketsystem/admin_tracking.png" alt="Analytics-Übersicht für die Admins" />
-                  </div>
-                </div>
-                <p className="text-sm text-white/70">
-                  <strong className="text-white">Analytics:</strong> Kurze Analytics-Seite, welche eine Übersicht über Tickets in dem angegebenen Zeitraum liefert.
-                </p>
-              </div>
-            </div>
-          </div>
+          <ScreenshotGallery screenshots={SCREENSHOTS} />
         </section>
 
-                {/* Key Features */}
+        {/* Key Features */}
         <section 
-          className="mb-12 transition-opacity duration-500"
-          style={{ opacity: visibleSections.features ? 1 : 0 }}
+          className="reveal mb-12"
+          
         >
           <h2 className="mb-6">Kern-Features & UX-Highlights</h2>
           
@@ -397,7 +305,7 @@ export default function TicketsystemPage() {
                 </p>
                 <ul className="space-y-1 text-sm text-white/60">
                   <li>→ Trennung: Nutzerkommentare, Adminkommentare und Adminantworten</li>
-                  <li>→ Automatischer Statuswechsel bei Antwort (→ "Warte auf Antwort")</li>
+                  <li>→ Automatischer Statuswechsel bei Antwort (→ &quot;Warte auf Antwort&quot;)</li>
                   <li>→ Systemnachrichten protokollieren den Verlauf des Tickets</li>
                 </ul>
               </div>
@@ -419,8 +327,8 @@ export default function TicketsystemPage() {
 
         {/* Ergebnis & Mehrwert */}
         <section 
-          className="mb-12 rounded border border-primary/30 bg-black/40 p-8 transition-opacity duration-500"
-          style={{ opacity: visibleSections.result ? 1 : 0 }}
+          className="reveal mb-12 rounded border border-primary/30 bg-black/40 p-8"
+          
         >
           <h2 className="mb-4">Projektergebnis & Business-Mehrwert</h2>
           <div className="space-y-4 text-white/85">
@@ -476,10 +384,10 @@ export default function TicketsystemPage() {
           </div>
         </section>
 
-        {/* Zurück Button */}
+        {/* Zurück-Button */}
         <div 
-          className="flex justify-center transition-opacity duration-500"
-          style={{ opacity: visibleSections.button ? 1 : 0 }}
+          className="reveal flex justify-center"
+          
         >
           <Link
             href="/"
@@ -489,17 +397,6 @@ export default function TicketsystemPage() {
           </Link>
         </div>
       </div>
-
-      {/* Image Gallery Modal */}
-      {galleryOpen && (
-        <ImageGallery
-          images={GALLERY_IMAGES}
-          currentIndex={galleryIndex}
-          onClose={() => setGalleryOpen(false)}
-          onPrevious={() => galleryIndex > 0 && setGalleryIndex(galleryIndex - 1)}
-          onNext={() => galleryIndex < GALLERY_IMAGES.length - 1 && setGalleryIndex(galleryIndex + 1)}
-        />
-      )}
     </main>
   );
 }
