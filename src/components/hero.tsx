@@ -4,7 +4,7 @@ import { TypeAnimation } from "react-type-animation";
 
 // Texte der Tipp-Animation
 const GREETING = "Hey, ich bin Fred.";
-const ROLES = ["Gamedesigner", "3D Artist.", "Grafikdesigner.", "Anwendungsentwickler."];
+const ROLES = ["Gamedesigner.", "3D Artist.", "Grafikdesigner.", "Anwendungsentwickler."];
 const PAUSE_MS = 1200;
 
 const LONGEST_ROLE = ROLES.reduce((a, b) => (b.length > a.length ? b : a));
